@@ -4,6 +4,6 @@ import com.aml.entity.CustomerDetails;
 
 public interface CustomerDetailsService {
 	
-	public CustomerDetails getCustomerDetails(Long custId);
+	public CustomerDetails getCustomerDetails(Integer custId);
 
 }

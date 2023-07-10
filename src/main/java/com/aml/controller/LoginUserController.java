@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aml.entity.AuthRequest;
+import com.aml.entity.LoginUser;
 import com.aml.exception.UnauthorizedException;
+import com.aml.repository.LoginUserRepository;
 import com.aml.util.JwtUtil;
 
 @RestController
@@ -27,6 +29,9 @@ public class LoginUserController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
+	@Autowired
+	private LoginUserRepository logiUserRepository;
+
 	@GetMapping("/")
 	public String user() {
 		return "Wel come to Login User!";
@@ -35,18 +40,20 @@ public class LoginUserController {
 	@PostMapping("/authenticate")
 	public ResponseEntity<Object> generateToken(@RequestBody AuthRequest authRequest) {
 		try {
-			System.out.println(authRequest);
 			authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(authRequest.getUserName(), authRequest.getPassword()));
 		} catch (Exception e) {
 			throw new UnauthorizedException("Invalid Username or Password");
 		}
+		LoginUser user = logiUserRepository.findByUserName(authRequest.getUserName());
 		String token = jwtUtil.generateToken(authRequest.getUserName());
 
 		Map<String, Object> response = new HashMap<>();
-		response.put("statusCode", HttpStatus.OK.value());
-		response.put("message", "Authentication successful");
-		response.put("token", token);
+		response.put("StatusCode", HttpStatus.OK.value());
+		response.put("Message", "Authentication successful");
+		response.put("Token", token);
+		response.put("UserName", authRequest.getUserName());
+		response.put("UserRole", user.getUserRole());
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 }

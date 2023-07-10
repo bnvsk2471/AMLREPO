@@ -13,19 +13,16 @@ import com.aml.entity.LoginUser;
 import com.aml.repository.LoginUserRepository;
 
 @Service
-public class CustomUserDetailService implements UserDetailsService{
+public class CustomUserDetailService implements UserDetailsService {
 
 	@Autowired
 	private LoginUserRepository loginUserrepo;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		LoginUser loginUser=loginUserrepo.findByUserName(username);
-		System.out.println(loginUser);
+		LoginUser loginUser = loginUserrepo.findByUserName(username);
 		return new User(loginUser.getUserName(), loginUser.getPassword(), new ArrayList<>());
-	
-	}
 
 	}
 
-
+}

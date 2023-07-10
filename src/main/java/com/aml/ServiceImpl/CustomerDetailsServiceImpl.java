@@ -16,7 +16,7 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 	private CustomerDetailsRepo customerDetailsRepo;
 	 
 	@Override
-	public CustomerDetails getCustomerDetails(Long custId)  {
+	public CustomerDetails getCustomerDetails(Integer custId)  {
 		
 		return customerDetailsRepo.findById(custId)
 					.orElseThrow(()->new CustomerDetailsNotFound("Customer details not found for the given Id"));

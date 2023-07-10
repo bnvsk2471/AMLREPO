@@ -18,6 +18,6 @@ public class AccountDetailsServiceImpl implements AccountDetailsService {
 	public AccountDetails getAccountDetails(Long accountDetailsId) {
 		
 		return accountDetailsRepo.findById(accountDetailsId)
-				.orElseThrow(()->new AccountDetailsNotFound(""));
+				.orElseThrow(()->new AccountDetailsNotFound("null"));
 	}
 }

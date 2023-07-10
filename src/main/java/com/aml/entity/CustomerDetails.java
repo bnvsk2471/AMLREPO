@@ -1,7 +1,6 @@
 package com.aml.entity;
 
-import java.security.Timestamp;
-import java.util.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +20,7 @@ public class CustomerDetails {
 	
 	@Column(name="CUST_DETAILS_ID")
 	@Id
-	private Long custDetailsId;
+	private Integer custDetailsId;
 	
 	@Column(name="DATA_ID")
 	private Long dataId;
@@ -45,7 +44,7 @@ public class CustomerDetails {
 	private String nationality;
 	
 	@Column(name="DOB")
-	private Date date;
+	private Timestamp date;
 	
 	@Column(name="PURPOSE_OF_ACCOUNT_OPENING")
 	private String purposeofAccount;
@@ -54,7 +53,7 @@ public class CustomerDetails {
 	private String sourceOfIncome;
 	
 	@Column(name="ACCOUNT_OPEN_DATE")
-	private Date accountOpenDate;
+	private Timestamp accountOpenDate;
 	
 	@Column(name="COMPANY_TYPE")
 	private String companyType;
@@ -63,7 +62,7 @@ public class CustomerDetails {
 	private String language;
 	
 	@Column(name="RECORD_ON")
-	private Timestamp recordOn;
+	private String recordOn;
 	
 	@Column(name="RM_CODE")
 	private String rmCode;

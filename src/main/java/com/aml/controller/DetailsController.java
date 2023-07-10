@@ -37,9 +37,9 @@ public class DetailsController {
 		return ResponseEntity.ok(amlCaseHeaderDetails);
 	}
 	
-	@GetMapping("/Customer-Detais/{custId}")
+	@GetMapping("/Customer-Details/{custId}")
 	public ResponseEntity<CustomerDetails> getCustomerDetails(
-			@PathVariable Long custId){
+			@PathVariable Integer custId){
 		CustomerDetails customerDetails=customerDetailsService.getCustomerDetails(custId);
 		return ResponseEntity.ok(customerDetails);
 	}

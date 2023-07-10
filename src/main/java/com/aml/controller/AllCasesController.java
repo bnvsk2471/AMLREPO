@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.aml.binding.RiskScore;
 import com.aml.entity.AllCases;
 import com.aml.service.AllCasesService;
 
@@ -20,4 +21,12 @@ public class AllCasesController {
 	public List<AllCases> getgetAllCases(){
 		return allCasesService.getAllCases();
 	}
+    @GetMapping("/quarterdetails")
+    public List<AllCases> quarterDate(){
+    	return allCasesService.fetchDataByDateRange();
+    }
+    @GetMapping("/riskscore")
+    public List<RiskScore> getRiskScore(){
+    	return allCasesService.fetchRiskScore();
+    }
 }

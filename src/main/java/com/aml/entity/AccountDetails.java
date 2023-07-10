@@ -1,8 +1,5 @@
 package com.aml.entity;
 
-import java.sql.Timestamp;
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -42,7 +39,7 @@ public class AccountDetails {
 	private String accountDesc;
 	
 	@Column(name="ACCOUNT_OPEN_DATE")
-	private Date accountOpenDate;
+	private String accountOpenDate;
 	
 	@Column(name="ACCOUNT_STATUS")
 	private String accountStatus;
@@ -75,7 +72,7 @@ public class AccountDetails {
 	private String dormant;
 	
 	@Column(name="LAST_ACTIVITY_DATE")
-	private Date lastActivityDate;
+	private String lastActivityDate;
 	
 	@Column(name="SUB_ACCOUNT")
 	private String subAccount;
@@ -153,7 +150,7 @@ public class AccountDetails {
 	private String rName;
 	
 	@Column(name="SINCE")
-	private Date since;
+	private String since;
 	
 	@Column(name="DESCRIPTION")
 	private String description;
@@ -192,7 +189,7 @@ public class AccountDetails {
 	private String autoAllocateTod;
 	
 	@Column(name="RECORD_ON")
-	private Timestamp recordOn;
+	private String recordOn;
 	
 	@Column(name="TOTAL_LOAN_AMOUNT")
 	private Long totalLoanAmount;
@@ -219,7 +216,7 @@ public class AccountDetails {
 	private String loanCurrency;
 	
 	@Column(name="LOAN_CLOSURE_DATE")
-	private Date loanClosureDate;
+	private String loanClosureDate;
 	
 	@Column(name="SCHEME")
 	private String scheme;

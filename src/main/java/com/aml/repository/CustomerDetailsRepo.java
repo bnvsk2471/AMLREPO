@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.aml.entity.CustomerDetails;
 
 @Repository
-public interface CustomerDetailsRepo extends JpaRepository<CustomerDetails, Long>{
-
+public interface CustomerDetailsRepo extends JpaRepository<CustomerDetails, Integer>{
+		
 }
