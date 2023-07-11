@@ -2,7 +2,6 @@ package com.aml.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,33 +16,12 @@ import com.aml.service.CustomerDetailsService;
 
 @RestController
 @RequestMapping("/AML")
-public class DetailsController {
-	
-	@Autowired
-	private AmlCaseHeaderDetailsService amlCaseHeaderDetailsService;
-	
-	@Autowired
-	private CustomerDetailsService customerDetailsService;
+public class accountDetails {
 	
 	@Autowired
 	private AccountDetailsService accountDetailsService;
 	
 	
-	@GetMapping("/Case-Header-Details/{dataId}")
-	public ResponseEntity<AmlCaseHeaderDetails> getAmlCaseHeaderDetails(
-			@PathVariable Integer dataId){
-		
-		AmlCaseHeaderDetails amlCaseHeaderDetails
-				=amlCaseHeaderDetailsService.getAmlCaseHeaderDetails(dataId);
-		return ResponseEntity.ok(amlCaseHeaderDetails);
-	}
-	
-	@GetMapping("/Customer-Details/{custId}")
-	public ResponseEntity<CustomerDetails> getCustomerDetails(
-			@PathVariable Integer custId){
-		CustomerDetails customerDetails=customerDetailsService.getCustomerDetails(custId);
-		return ResponseEntity.ok(customerDetails);
-	}
 	
 	@GetMapping("/Account-Detais/{accountDetailsId}")
 	public ResponseEntity<AccountDetails> getAccountDetails(

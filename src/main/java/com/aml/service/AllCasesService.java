@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.aml.binding.RiskScore;
 import com.aml.entity.AllCases;
-import com.aml.entity.Quarter;
-import com.aml.enums.MonthEnum;
 import com.aml.repository.AllCasesRepository;
 import com.aml.util.QuarterDateUtil;
 @Service
