@@ -20,6 +20,8 @@ import com.aml.exception.UnauthorizedException;
 import com.aml.repository.LoginUserRepository;
 import com.aml.util.JwtUtil;
 
+import io.jsonwebtoken.ExpiredJwtException;
+
 @RestController
 @CrossOrigin
 public class LoginUserController {
@@ -32,21 +34,19 @@ public class LoginUserController {
 	@Autowired
 	private LoginUserRepository logiUserRepository;
 
-	@GetMapping("/")
-	public String user() {
-		return "Wel come to Login User!";
-	}
-
 	@PostMapping("/authenticate")
 	public ResponseEntity<Object> generateToken(@RequestBody AuthRequest authRequest) {
 		try {
 			authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(authRequest.getUserName(), authRequest.getPassword()));
+		}catch (ExpiredJwtException e) {
+			    System.out.println(" Token expired ");
+			    
 		} catch (Exception e) {
 			throw new UnauthorizedException("Invalid Username or Password");
 		}
 		LoginUser user = logiUserRepository.findByUserName(authRequest.getUserName());
-		String token = jwtUtil.generateToken(authRequest.getUserName());
+		String token = jwtUtil.generateToken(authRequest.getUserName(),user.getUserRole());
 
 		Map<String, Object> response = new HashMap<>();
 		response.put("StatusCode", HttpStatus.OK.value());

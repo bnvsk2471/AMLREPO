@@ -15,7 +15,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Service
 public class JwtUtil {
 
-	private String secret = "java";
+	final String secret = "java";
 
 	public String extractUsername(String token) {
 
@@ -40,8 +40,9 @@ public class JwtUtil {
 		return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
 	}
 
-	public String generateToken(String username) {
+	public String generateToken(String username,String role) {
 		Map<String, Object> claim = new HashMap<>();
+		 claim.put("role", role);
 		return createToken(claim, username);
 	}
 
