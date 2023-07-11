@@ -18,15 +18,14 @@ public class QuarterDateUtil {
 		LocalDate currentQuaterstartDate = null;
 		LocalDate lastQuaterStartdate=null;
 		LocalDate lastQuaterEnddate=null;
+		
 		int currentMonthValue = endDate.getMonthValue();
 		currentQuaterstartDate = endDate.minusMonths(currentMonthValue % 3 == 0 ? 2 : (currentMonthValue % 3 == 1 ? 0 : 1));
 		currentQuaterstartDate = currentQuaterstartDate.withDayOfMonth(1);
-		System.out.println(currentQuaterstartDate);
+
 		lastQuaterStartdate=endDate.minusMonths(currentMonthValue % 3 == 0 ? 5 : (currentMonthValue % 3 == 1 ? 3 : 4));
 		lastQuaterStartdate=lastQuaterStartdate.withDayOfMonth(1);
-		System.out.println(lastQuaterStartdate);
 		lastQuaterEnddate=lastQuaterStartdate.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
-		System.out.println(lastQuaterEnddate);
 		
 		//int quarter = (startDate.getMonthValue() + 2) / 3; // Calculate the quarter based on the start date
 	//	System.out.println("Quater is:"+quarter+"   "+"StartDate is:"+startDate);

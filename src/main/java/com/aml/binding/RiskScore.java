@@ -10,4 +10,5 @@ public class RiskScore {
 	private Integer high;
 	private Integer medium;
 	private Integer low;
+//	private Integer year;
 }
