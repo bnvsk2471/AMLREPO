@@ -17,7 +17,7 @@ public class AlertedTransactionController {
 	@Autowired
 	private AlertedTransactionsService alertedTransactionsService;
     
-	@GetMapping("/AlertedTransactions")
+	@GetMapping("/AlertedTransactions/{dataId}")
 	public List<AlertedTransactions> getTransactions(
 			@PathVariable Integer dataId
 			){
