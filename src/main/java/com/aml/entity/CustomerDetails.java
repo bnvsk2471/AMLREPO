@@ -23,7 +23,7 @@ public class CustomerDetails {
 	private Integer custDetailsId;
 	
 	@Column(name="DATA_ID")
-	private Long dataId;
+	private Integer dataId;
 	
 	@Column(name="CIF")
 	private String cif;

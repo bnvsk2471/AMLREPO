@@ -1,5 +1,7 @@
 package com.aml.ServiceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +17,9 @@ public class AccountDetailsServiceImpl implements AccountDetailsService {
 	private AccountDetailsRepo accountDetailsRepo;
 
 	@Override
-	public AccountDetails getAccountDetails(Long accountDetailsId) {
+	public List<AccountDetails> getAccountDetails(Long dataId) {
 		
-		return accountDetailsRepo.findById(accountDetailsId)
-				.orElseThrow(()->new AccountDetailsNotFound("null"));
+		return accountDetailsRepo.findByDataId(dataId);
+				//.orElseThrow(()->new AccountDetailsNotFound("null"));
 	}
 }
