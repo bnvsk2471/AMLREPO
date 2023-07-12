@@ -8,4 +8,5 @@ import com.aml.entity.CustomerDetails;
 @Repository
 public interface CustomerDetailsRepo extends JpaRepository<CustomerDetails, Integer>{
 		
+	public CustomerDetails findByDataId(Integer dataid);
 }

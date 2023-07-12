@@ -19,10 +19,10 @@ public class customerDetails {
 	private CustomerDetailsService customerDetailsService;
 	
 	
-	@GetMapping("/Customer-Details/{custId}")
+	@GetMapping("/Customer-Details/{dataId}")
 	public ResponseEntity<CustomerDetails> getCustomerdetails(
-			@PathVariable Integer custId){
-		CustomerDetails customerDetails=customerDetailsService.getCustomerDetails(custId);
+			@PathVariable Integer dataId){
+		CustomerDetails customerDetails=customerDetailsService.getCustomerDetails(dataId);
 		return ResponseEntity.ok(customerDetails);
 	}
 	
