@@ -7,5 +7,5 @@ import com.aml.entity.AmlCaseHeaderDetails;
 
 @Repository
 public interface AmlCaseHeaderDetailsRepo extends JpaRepository<AmlCaseHeaderDetails, Integer> {
-
+     public AmlCaseHeaderDetails findByDataId(Integer dataId);
 }

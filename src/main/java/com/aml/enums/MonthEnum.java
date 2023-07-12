@@ -12,7 +12,7 @@ public enum MonthEnum {
     SEPTEMBER("Q2"),
     OCTOBER("Q3"),
     NOVEMBER("Q3"),
-    DECEMBER("Q3"), month;
+    DECEMBER("Q3");
 
     private final String value;
 

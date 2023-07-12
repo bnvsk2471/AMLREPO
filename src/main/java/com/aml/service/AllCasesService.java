@@ -46,7 +46,8 @@ public class AllCasesService {
 		List<AllCases> medium = allCasesRepository.findByCreatedDateBetweenAndRiskScore(currentQuaterstartDate, LocalDate.now(),"MEDIUM");
 		List<AllCases> low = allCasesRepository.findByCreatedDateBetweenAndRiskScore(currentQuaterstartDate, LocalDate.now(),"LOW");
 		
-		riskScorecurent.setQuarter(quarterInfo(datesMap.get("currentQuaterstartDate").getMonth()) + datesMap.get("currentQuaterstartDate").getYear());
+		riskScorecurent.setQuarter( datesMap.get("currentQuaterstartDate").getYear()+" "+quarterInfo(LocalDate.now().getMonth()) );
+		System.out.println(LocalDate.now().getMonth());
 		riskScorecurent.setTotal(all.size());
 		riskScorecurent.setHigh(high.size());
 		riskScorecurent.setMedium(medium.size());
@@ -60,7 +61,7 @@ public class AllCasesService {
 		List<AllCases> high1 = allCasesRepository.findByCreatedDateBetweenAndRiskScore(lastQuaterStartdate, lastQuaterEnddate,"HIGH");
 		List<AllCases> medium1 = allCasesRepository.findByCreatedDateBetweenAndRiskScore(lastQuaterStartdate, lastQuaterEnddate,"MEDIUM");
 		List<AllCases> low1 = allCasesRepository.findByCreatedDateBetweenAndRiskScore(lastQuaterStartdate, lastQuaterEnddate,"LOW");
-		riskScoreprevious.setQuarter(quarterInfo(datesMap.get("lastQuaterStartdate").getMonth()) + datesMap.get("lastQuaterStartdate").getYear());
+		riskScoreprevious.setQuarter( datesMap.get("lastQuaterStartdate").getYear() +" "+ quarterInfo(datesMap.get("lastQuaterStartdate").getMonth()) );
 		riskScoreprevious.setTotal(all1.size());
 		riskScoreprevious.setHigh(high1.size());
 		riskScoreprevious.setMedium(medium1.size());
@@ -75,13 +76,12 @@ public class AllCasesService {
 	}
 	
 	public String quarterInfo(Month month) {
-		
-		
-		if(month.equals("JANUARY")||month.equals("FEBRUARY")||month.equals("MARCH")) {
+		String month2 =month.name();
+		if(month2.equals("JANUARY")||month2.equals("FEBRUARY")||month2.equals("MARCH")) {
 			return "Q4";
-		}else if(month.equals("APRIL")||month.equals("MAY")||month.equals("JUNE")) {
+		}else if(month2.equals("APRIL")||month2.equals("MAY")||month2.equals("JUNE")) {
 			return "Q1";
-		}else if(month.equals("JULY")||month.equals("AUGUST")||month.equals("SEPTEMBER")) {
+		}else if(month2.equals("JULY")||month2.equals("AUGUST")||month2.equals("SEPTEMBER")) {
 			return "Q2";
 		}else {
 			return "Q3";

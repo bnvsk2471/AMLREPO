@@ -16,9 +16,9 @@ public class AmlCaseHeaderDetailsServiceImpl implements AmlCaseHeaderDetailsServ
 
 	@Override
 	public AmlCaseHeaderDetails getAmlCaseHeaderDetails(Integer dataId) {
-		return amlCaseHeaderDetailsRepo.findById(dataId)
-				.orElseThrow(()->new AmlCaseHeaderDetailsNotFound
-						("Aml Case Header Details are not found with provided Id"));
+		return amlCaseHeaderDetailsRepo.findByDataId(dataId);
+//				.orElseThrow(()->new AmlCaseHeaderDetailsNotFound
+//						("Aml Case Header Details are not found with provided Id"));
 	}
 
 }

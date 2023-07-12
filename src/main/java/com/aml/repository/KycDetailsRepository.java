@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.aml.entity.KycDetails;
 @Repository
 public interface KycDetailsRepository extends JpaRepository<KycDetails, Integer>{
-
+      public KycDetails findByDataId(Integer dataid);
 }

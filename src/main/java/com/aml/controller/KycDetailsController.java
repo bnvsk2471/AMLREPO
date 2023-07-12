@@ -1,9 +1,8 @@
 package com.aml.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,8 +15,8 @@ public class KycDetailsController {
     @Autowired
 	private KycDetailsService kycDetailsService;
 	
-	@GetMapping("/getkycDetails")
-	private List<KycDetails> getKycDetails(){
-		return kycDetailsService.getKycDetails();
+	@GetMapping("/getkycDetails/{dataId}")
+	public KycDetails getKycDetails(@PathVariable Integer dataId){
+		return kycDetailsService.getKycDetails(dataId);
 	}
 }
