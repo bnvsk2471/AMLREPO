@@ -21,6 +21,9 @@ public class Documents {
 	private Integer docInfoId;
 	@Column(name = "DATA_ID")
 	private Integer dataId;
+	@Column(name = "NAME")
+	private String name;
+	
 	@Column(name = "URL")
 	private String url;
 
