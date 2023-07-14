@@ -3,6 +3,7 @@ package com.aml.service;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -21,15 +22,16 @@ public class AllCasesService {
 	@Autowired
 	private QuarterDateUtil quarterDateUtil;
 	
-	public List<AllCases> getAllCases(){
-		
-		return allCasesRepository.findAll();
+	public List<AllCases> getAllCases(String username, String role){
+		List<String> users=Arrays.asList(username,role);
+		return allCasesRepository.findByAssignedUserIn(users);
 	}
 	
 	public List<AllCases> fetchDataByDateRange(){
 		Map<String, LocalDate> datesMap = quarterDateUtil.getQuarterlyDates();
 		LocalDate currentQuarterStartDate =datesMap.get("currentQuaterstartDate");
 		List<AllCases> all = allCasesRepository.findByCreatedDateBetween(currentQuarterStartDate , LocalDate.now());
+		
 		return all;
 	}
 	

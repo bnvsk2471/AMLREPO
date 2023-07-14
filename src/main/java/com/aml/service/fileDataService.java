@@ -18,8 +18,11 @@ public class fileDataService {
 
 	public String uploadImage(MultipartFile file) throws IOException {
 
-		FileData fileData = fileDataRepo.save(FileData.builder().names(file.getOriginalFilename())
-				.type(file.getContentType()).imageData(FileUtils.compressImage(file.getBytes())).build());
+		FileData fileData = fileDataRepo.save(FileData.builder()
+				.names(file.getOriginalFilename())
+				.type(file.getContentType())
+				.imageData(FileUtils.compressImage(file.getBytes()))
+				.build());
 
 		if (fileData != null) {
 			return "fileupload sucessfully";
