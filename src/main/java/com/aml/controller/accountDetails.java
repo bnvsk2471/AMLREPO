@@ -3,20 +3,15 @@ package com.aml.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aml.entity.AccountDetails;
-import com.aml.entity.AmlCaseHeaderDetails;
-import com.aml.entity.CustomerDetails;
 import com.aml.entity.TransactionDetails;
 import com.aml.entity.TransactionSummary;
 import com.aml.service.AccountDetailsService;
-import com.aml.service.AmlCaseHeaderDetailsService;
-import com.aml.service.CustomerDetailsService;
 import com.aml.service.TransactionDetailsService;
 import com.aml.service.TransactionSummaryService;
 

@@ -2,6 +2,7 @@ package com.aml.service;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.aml.binding.RiskScore;
+import com.aml.binding.casesSummary;
+import com.aml.binding.getCases;
+import com.aml.binding.getCasesSummery;
 import com.aml.entity.AllCases;
 import com.aml.repository.AllCasesRepository;
 import com.aml.util.QuarterDateUtil;
@@ -21,17 +25,79 @@ public class AllCasesService {
 	private AllCasesRepository allCasesRepository;
 	@Autowired
 	private QuarterDateUtil quarterDateUtil;
+
 	
-	public List<AllCases> getAllCases(String username, String role){
+	public getCasesSummery getAllCases(String username, String role){
 		List<String> users=Arrays.asList(username,role);
-		return allCasesRepository.findByAssignedUserIn(users);
+		List<AllCases> allCases=allCasesRepository.findByAssignedUserIn(users);
+		List<getCases> getallcases=new ArrayList<>();
+		int countAgeing = 0;
+		int amberZoneCases=0;
+		int group=0;
+		int open=0;
+		int close=0;
+		for(AllCases cases:allCases) {
+			getCases getcases=new getCases();
+			getcases.setDataId(cases.getDataId());
+			getcases.setCaseRefNo(cases.getCaseRefNo());
+			getcases.setSasCaseId(cases.getSasCaseId());
+			getcases.setCifNo(cases.getCifNo());
+			getcases.setAlertedEntityNumber(cases.getAlertedEntityNumber());
+			getcases.setPrimaryEntityName(cases.getPrimaryEntityName());
+			int daysDifference = (int) ChronoUnit.DAYS.between(cases.getCreatedDate(), LocalDate.now());
+			getcases.setAgeing(daysDifference);
+			getcases.setAlertCreationDate(cases.getAlertCreationDate());
+			getcases.setAssignedUser(cases.getAssignedUser());
+			getcases.setCreatedDate(cases.getCreatedDate());
+			getcases.setCaseStatus(cases.getCaseStatus());
+			
+			if (daysDifference >= 25 && daysDifference <= 30) {
+	            countAgeing++;
+	        }
+			if(daysDifference >= 25) {
+				amberZoneCases++;
+			}
+			if(cases.getAssignedUser().equals(role)) {
+				group++;
+			}
+			if(cases.getCaseStatus().equalsIgnoreCase("open")) {
+				open++;
+			}else if(cases.getCaseStatus().equalsIgnoreCase("close")){
+				close++;
+			}
+			
+			if(cases.getCaseStatus().equalsIgnoreCase("close")) {
+			}else {
+			getallcases.add(getcases);
+			}
+		}
+		casesSummary casesSummary=new casesSummary();
+		casesSummary.setNewCases(group);
+		casesSummary.setAmberZoneCases(amberZoneCases);
+		casesSummary.setAboutToDueCases(countAgeing);
+		casesSummary.setRfaRespReceived(50);
+		casesSummary.setRfiRespReceived(50);
+		casesSummary.setNewAlerts(63);
+		casesSummary.setOpenCases(open);
+		casesSummary.setClosedCases(close);
+		casesSummary.setOverDueCases(amberZoneCases);
+		
+
+		getCasesSummery getCasesSummery=new getCasesSummery();
+		getCasesSummery.setGetCases(getallcases);
+		getCasesSummery.setCasesSummary(casesSummary);
+		getCasesSummery.setRiskScores(fetchRiskScore());
+		
+		
+
+		return getCasesSummery;
 	}
+	
 	
 	public List<AllCases> fetchDataByDateRange(){
 		Map<String, LocalDate> datesMap = quarterDateUtil.getQuarterlyDates();
 		LocalDate currentQuarterStartDate =datesMap.get("currentQuaterstartDate");
 		List<AllCases> all = allCasesRepository.findByCreatedDateBetween(currentQuarterStartDate , LocalDate.now());
-		
 		return all;
 	}
 	
