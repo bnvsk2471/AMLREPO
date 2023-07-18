@@ -13,5 +13,8 @@ public interface AllCasesRepository extends JpaRepository<AllCases, Integer>{
 	public List<AllCases> findByCreatedDateBetweenAndRiskScore(LocalDate startdate,LocalDate endDate,String risk);
 	
 	public List<AllCases> findByAssignedUserIn(List<String> users);
+	public AllCases findByDataId(Integer dataId);
+	
+	
 	
 }

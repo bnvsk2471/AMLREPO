@@ -47,7 +47,7 @@ public class AllCases {
 	private String currentStep;
     
     @Column(name = "DATA_ID")
-	private int dataId;
+	private Integer dataId;
     
     @Column(name = "INSTANCE_ID")
 	private String instanceId;
@@ -71,7 +71,7 @@ public class AllCases {
 	private String sasCaseId;
 	
 	@Column(name = "CLOSED_DATE")
-	private String closedDate;
+	private LocalDate closedDate;
 	
 	@Column(name = "CREATED_USER_ID")
 	private String createdUserId;

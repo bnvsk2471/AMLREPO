@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.aml.binding.RiskScore;
 import com.aml.binding.casesSummary;
 import com.aml.binding.getCases;
+import com.aml.binding.ActionUpdation;
 import com.aml.binding.getCasesSummery;
 import com.aml.entity.AllCases;
 import com.aml.repository.AllCasesRepository;
@@ -30,6 +31,7 @@ public class AllCasesService {
 	public getCasesSummery getAllCases(String username, String role){
 		List<String> users=Arrays.asList(username,role);
 		List<AllCases> allCases=allCasesRepository.findByAssignedUserIn(users);
+		
 		List<getCases> getallcases=new ArrayList<>();
 		int countAgeing = 0;
 		int amberZoneCases=0;
@@ -91,6 +93,18 @@ public class AllCasesService {
 		
 
 		return getCasesSummery;
+	}
+	
+	public String ActionUpdation(ActionUpdation action) {
+		AllCases cases = allCasesRepository.findByDataId(action.getDataId());
+		if(action.getAction().equalsIgnoreCase("close case")) {
+			cases.setClosedBy(action.getCurrentUser());
+			cases.setCaseStatus("close");
+		}else if(action.getAction()!=null) {
+			cases.setAssignedUser(action.getAction());
+		}
+		allCasesRepository.save(cases);	
+		return "Case Submitted";
 	}
 	
 	
