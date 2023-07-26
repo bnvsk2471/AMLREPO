@@ -97,7 +97,7 @@ public class AllCasesService {
 	
 	public String ActionUpdation(ActionUpdation action) {
 		AllCases cases = allCasesRepository.findByDataId(action.getDataId());
-		if(action.getAction().equalsIgnoreCase("close case")) {
+		if(action.getAction().equalsIgnoreCase("close")) {
 			cases.setClosedBy(action.getCurrentUser());
 			cases.setCaseStatus("close");
 		}else if(action.getAction()!=null) {
